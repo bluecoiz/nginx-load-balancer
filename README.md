@@ -49,6 +49,8 @@ npm install express --save
 
 #### Build Docker Image and Run Podman Containers
 ```
+cd nodejs
+podman build -t nodeapp:001 .
 podman container run -p 5001:5000 --name nodeapp-1 -d nodeapp:001
 podman container run -p 5002:5000 --name nodeapp-2 -e "name=Bye" -d nodeapp:001
 podman ps
@@ -98,6 +100,7 @@ COPY nginx.conf /etc/nginx/conf.d/default.conf
 
 #### Build Docker Image and Run Podman Container
 ```
+cd nginx
 podman build -t nginx-lb:001 .
 podman container run -p 5000:80 --network cni-podman1 --name loadbalancer -d nginx-lb:001
 ```
