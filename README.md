@@ -5,9 +5,17 @@
 $ podman network create
 /etc/cni/net.d/cni-podman1.conflist
 ```
-You ne
+Get the name of the network you created. You will need this name to fill in configuration later.
 ```
-cat /etc/cni/net.d/cni-podman1.conflist | grep -oP '(?<="name": ")[^"]*'
+$ cat /etc/cni/net.d/cni-podman1.conflist | grep -oP '(?<="name": ")[^"]*'
+cni-podman1
+```
+or
+```
+$ podman network ls
+NAME          VERSION   PLUGINS
+podman        0.4.0     bridge,portmap,firewall,tuning
+cni-podman1   0.4.0     bridge,portmap,firewall,dnsname
 ```
 
 ## Node.js Application Setup
@@ -60,6 +68,7 @@ npm install express --save
 
 
 #### Build Docker Image and Run Podman Containers
+Remember to change the --network name to the network you created just now.
 ```
 cd nodejs
 podman build -t nodeapp:001 .
@@ -70,7 +79,7 @@ podman ps
 
 
 ## Nginx Load Balancer Setup
-A sample Nginx load balancing on NodeJS application
+
 
 #### nginx.conf
 Please update the upstream servers ip address. You can check your containers 
@@ -113,6 +122,7 @@ COPY nginx.conf /etc/nginx/conf.d/default.conf
 ```
 
 #### Build Docker Image and Run Podman Container
+Remember to change the --network name to the network you created just now.
 ```
 cd nginx
 podman build -t nginx-lb:001 .
