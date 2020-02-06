@@ -3,12 +3,12 @@ A sample Nginx load balancing on NodeJS application
 
 #### Nginx Load Balancer
 
-```javascript
+```nginx
 log_format upstreamlog 
- '$server_name to: $upstream_addr [$request] '
- 'upstream_response_time $upstream_response_time '
- 'msec $msec '
- 'request_time $request_time';
+    '$server_name to: $upstream_addr [$request] '
+    'upstream_response_time $upstream_response_time '
+    'msec $msec '
+    'request_time $request_time';
 
 upstream appcluster {
     least_conn;
@@ -31,10 +31,7 @@ server {
         log_not_found off;
     }
 }
+```
 
-###Images
-
-Image:
-
-![](https://pandao.github.io/editor.md/examples/images/4.jpg)
-
+# nginx-load-balancer
+A sample Nginx load balancing on NodeJS application
