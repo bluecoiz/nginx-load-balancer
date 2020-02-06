@@ -51,8 +51,8 @@ npm install express --save
 ```
 cd nodejs
 podman build -t nodeapp:001 .
-podman container run -p 5001:5000 --name nodeapp-1 -d nodeapp:001
-podman container run -p 5002:5000 --name nodeapp-2 -e "name=Bye" -d nodeapp:001
+podman container run -p 5001:5000 --network cni-podman1 --name nodeapp-1 -d nodeapp:001
+podman container run -p 5002:5000 --network cni-podman1 --name nodeapp-2 -e "name=Bye" -d nodeapp:001
 podman ps
 ```
 
