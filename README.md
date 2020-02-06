@@ -1,7 +1,7 @@
 # nginx-load-balancer
 A sample Nginx load balancing on NodeJS application
 
-#### Nginx Load Balancer
+#### nginx.conf
 
 ```nginx
 log_format upstreamlog 
@@ -33,5 +33,10 @@ server {
 }
 ```
 
-# nginx-load-balancer
-A sample Nginx load balancing on NodeJS application
+#### Nginx Load Balancer Dockerfile
+
+``` docker
+FROM nginx:alpine
+RUN rm /etc/nginx/conf.d/default.conf
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+```
