@@ -1,3 +1,15 @@
+## Podman Network Configuration
+
+#### Create Network
+```ssh
+$ podman network create
+/etc/cni/net.d/cni-podman1.conflist
+```
+You ne
+```
+cat /etc/cni/net.d/cni-podman1.conflist | grep -oP '(?<="name": ")[^"]*'
+```
+
 ## Node.js Application Setup
 
 #### Prerequisites:
@@ -41,7 +53,7 @@ cd nodejs
 ```
 npm init
 ```
-3. Install Dependencies.
+3. Install dependencies.
 ```
 npm install express --save
 ```
@@ -61,6 +73,8 @@ podman ps
 A sample Nginx load balancing on NodeJS application
 
 #### nginx.conf
+Please update the upstream servers ip address. You can check your containers 
+
 ```nginx
 log_format upstreamlog 
     '$server_name to: $upstream_addr [$request] '
