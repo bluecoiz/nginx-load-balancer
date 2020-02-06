@@ -31,7 +31,7 @@ EXPOSE 5000
 ```
 
 
-#### Setup
+#### Initialize Node.js Application
 
 1. Change directory to nodejs application path.
 ```
@@ -44,6 +44,14 @@ npm init
 3. Install Dependencies.
 ```
 npm install express --save
+```
+
+
+#### Build Docker Image and Run Podman Containers
+```
+podman container run -p 5001:5000 --name nodeapp-1 -d nodeapp:001
+podman container run -p 5002:5000 --name nodeapp-2 -e "name=Bye" -d nodeapp:001
+podman ps
 ```
 
 
