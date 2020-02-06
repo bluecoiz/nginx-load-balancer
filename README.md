@@ -2,7 +2,6 @@
 A sample Nginx load balancing on NodeJS application
 
 #### nginx.conf
-
 ```nginx
 log_format upstreamlog 
     '$server_name to: $upstream_addr [$request] '
@@ -33,11 +32,16 @@ server {
 }
 ```
 
-#### Nginx Load Balancer Dockerfile
-
+#### Dockerfile
 ```
 FROM nginx:alpine
 RUN rm /etc/nginx/conf.d/default.conf
 COPY nginx.conf /etc/nginx/conf.d/default.conf
+```
+
+#### Build Docker Image and Run Podman Container
+```
+podman build -t nginx-lb:001 .
+podman container run -p 5000:80 --network cni-podman1 --name loadbalancer -d nginx-lb:001
 ```
 
