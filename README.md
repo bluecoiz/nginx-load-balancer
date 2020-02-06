@@ -80,9 +80,17 @@ podman ps
 
 ## Nginx Load Balancer Setup
 
+#### Check Node.js application Podman container IP address.
+Check the node app container ip address which created just now.
+```
+$ podman container inspect nodeapp-1 | grep -oP '(?<="IPAddress": ")[^"]*'
+10.88.0.5
+$ podman container inspect nodeapp-2 | grep -oP '(?<="IPAddress": ")[^"]*'
+10.88.0.6
+```
 
 #### nginx.conf
-Please update the upstream servers ip address. You can check your containers 
+Please update the upstream servers ip address.
 
 ```nginx
 log_format upstreamlog 
