@@ -1,4 +1,53 @@
-# nginx-load-balancer
+## Node.js Application Setup
+
+#### Prerequisites:
+Make sure your workstation already install nodejs.
+
+
+#### app.js
+```
+const express = require('express')
+const app = express()
+const port = 5000
+const name = process.env.name || "World"
+
+    app.get('/', (req, res) => {
+        res.send(`Hello ${name} !`)
+    })
+app.listen(port, () => {
+    console.log(`Server Started on Port  ${port}`)
+})
+```
+
+#### Dockerfile
+```
+FROM node:alpine
+WORKDIR /app
+COPY package.json .
+RUN npm install
+COPY . .
+CMD node app.js
+EXPOSE 5000
+```
+
+
+#### Setup
+
+1. Change directory to nodejs application path.
+```
+cd nodejs
+```
+2. Node.js initialize.
+```
+npm init
+```
+3. Install Dependencies.
+```
+npm install express --save
+```
+
+
+## Nginx Load Balancer Setup
 A sample Nginx load balancing on NodeJS application
 
 #### nginx.conf
