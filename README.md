@@ -1,3 +1,7 @@
+## Prerequisites:
+1. Fedora 31
+2. Podman version 1.7
+
 ## Podman Network Configuration
 
 #### Create Network
